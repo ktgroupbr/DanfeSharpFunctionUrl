@@ -20,12 +20,17 @@ namespace DanfeSharpFunctionUrl
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
+             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("pt-BR");
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("pt-BR");
+
             var modelo = DanfeViewModelCreator.CriarDeArquivoXml(req.Body);
+            modelo.Orientacao = DanfeSharp.Orientacao.Retrato;
 
             var filepdf = System.IO.Path.GetTempPath() + Path.GetRandomFileName() + ".pdf";
 
-            using (DanfeSharp.Danfe danfe = new DanfeSharp.Danfe(modelo))
+            using (DanfeSharp.Danfe danfe = new DanfeSharp.Danfe(modelo,"Taxfylink - KTGroup", "Taxfylink"))
             {
+               
                 danfe.Gerar();
                 danfe.Salvar(filepdf);
             }
