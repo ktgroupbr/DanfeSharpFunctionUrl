@@ -28,7 +28,7 @@ namespace DanfeSharpFunctionUrl
 
             var filepdf = System.IO.Path.GetTempPath() + Path.GetRandomFileName() + ".pdf";
 
-            using (DanfeSharp.Danfe danfe = new DanfeSharp.Danfe(modelo,"Taxfylink - KTGroup", "Taxfylink"))
+            using (DanfeSharp.Danfe danfe = new DanfeSharp.Danfe(modelo))
             {
                
                 danfe.Gerar();
